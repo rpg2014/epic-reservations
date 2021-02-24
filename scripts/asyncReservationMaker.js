@@ -3,6 +3,7 @@ mountains = ['14']
 people = ['lowercase name']
 delay = 1000 // 1 second in ms
 varyRange = 500 // a random value between [-varyRange, +varyRange] is chosen to add to delay before looping the main loop. 
+attemptNumber = 0
 
 // Afton Alps				=	"11"
 // Alpine Valley			=	"232"
@@ -270,9 +271,9 @@ async function doTheWork(index) {
         finalizeReservations()
 
     } else {
-        console.log("Days are full")
+        console.log("Days are full, attempt "+ attemptNumber++)
         let jitter = delay  + ((varyRange* 2)*(Math.random() - 0.5 ));
-        console.log("jitter: " + jitter)
+        console.log("Waiting for " + (jitter /1000).toString().substring(0,3) + " seconds")
         setTimeout(() => nextMountain(index), jitter)
     }
 }
